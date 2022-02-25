@@ -47,8 +47,8 @@ namespace LoremIpsumLogistica.Api.Controllers
             return Ok(address);
         }
 
-        [HttpGet("{id}", Name = nameof(GetByIdAsync))]
-        public async Task<ActionResult> GetByIdAsync(Guid id)
+        [HttpGet("{id}", Name = nameof(GetByIdAddressAsync))]
+        public async Task<ActionResult> GetByIdAddressAsync(Guid id)
         {
             try
             {
@@ -81,8 +81,8 @@ namespace LoremIpsumLogistica.Api.Controllers
             }
         }
 
-        [HttpPut(Name = nameof(UpdateAsync))]
-        public async Task<ActionResult<AddressResponse>> UpdateAsync(UpdateAddressRequest request)
+        [HttpPut(Name = nameof(UpdateAddressAsync))]
+        public async Task<ActionResult<AddressResponse>> UpdateAddressAsync(UpdateAddressRequest request)
         {
             try
             {
@@ -96,8 +96,8 @@ namespace LoremIpsumLogistica.Api.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}", Name = nameof(DeleteByIAsync))]
-        public async Task<ActionResult> DeleteByIAsync(Guid id)
+        [HttpDelete("{id}", Name = nameof(DeleteByIdAddressAsync))]
+        public async Task<ActionResult> DeleteByIdAddressAsync(Guid id)
         {
             try
             {
@@ -111,9 +111,9 @@ namespace LoremIpsumLogistica.Api.Controllers
         }
         private void GerarLinks(AddressResponse address)
         {
-            address.Links.Add(new LinkDTO(_urlHelper.Link(nameof(GetByIdAsync), new { id = address.Id }), rel: "self-address", metodo: "GET"));
-            address.Links.Add(new LinkDTO(_urlHelper.Link(nameof(UpdateAsync), new { id = address.Id }), rel: "update-address", metodo: "PUT"));
-            address.Links.Add(new LinkDTO(_urlHelper.Link(nameof(DeleteByIAsync), new { id = address.Id }), rel: "delete-address", metodo: "DELETE"));
+            address.Links.Add(new LinkDTO(_urlHelper.Link(nameof(GetByIdAddressAsync), new { id = address.Id }), rel: "self-address", metodo: "GET"));
+            address.Links.Add(new LinkDTO(_urlHelper.Link(nameof(UpdateAddressAsync), new { id = address.Id }), rel: "update-address", metodo: "PUT"));
+            address.Links.Add(new LinkDTO(_urlHelper.Link(nameof(DeleteByIdAddressAsync), new { id = address.Id }), rel: "delete-address", metodo: "DELETE"));
         }
 
     }

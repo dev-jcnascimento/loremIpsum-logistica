@@ -38,7 +38,7 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             string query = @"select * from address ";
             query += $" limit {size} offset {offset}";
 
-            return (IEnumerable<AddressResponse>)_addressRepository.GetAll(query);
+            return (IEnumerable<AddressResponse>)_addressRepository.GetAll();
         }
         public async Task<AddressResponse> GetByIdAsync(Guid id)
         {

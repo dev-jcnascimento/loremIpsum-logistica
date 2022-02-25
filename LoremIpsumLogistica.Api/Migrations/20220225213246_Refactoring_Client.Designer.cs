@@ -4,6 +4,7 @@ using LoremIpsumLogistica.Api.Infra.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoremIpsumLogistica.Api.Migrations
 {
     [DbContext(typeof(LoremIpsumLogisticaContext))]
-    partial class LoremIpsumLogisticaContextModelSnapshot : ModelSnapshot
+    [Migration("20220225213246_Refactoring_Client")]
+    partial class Refactoring_Client
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,8 +61,7 @@ namespace LoremIpsumLogistica.Api.Migrations
                         .HasColumnName("TypeAddress");
 
                     b.Property<int>("ZipCode")
-                        .HasColumnType("int")
-                        .HasColumnName("ZipCode");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

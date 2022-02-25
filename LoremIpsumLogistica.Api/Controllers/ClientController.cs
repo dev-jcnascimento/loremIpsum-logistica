@@ -38,17 +38,17 @@ namespace LoremIpsumLogistica.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ClientResponse>>> GetAllAsync(int? page, int? size)
+        public async Task<ActionResult<IEnumerable<ClientResponse>>> GetAllAsync(int page, int size)
         {
-            var client = await _clientService.GetAllAsync((int)page, (int)size);
+            var client = await _clientService.GetAllAsync(page, size);
 
             client.ToList().ForEach(c => GerarLinks(c));
 
             return Ok(client);
         }
 
-        [HttpGet("{id}", Name = nameof(GetByIdAsync))]
-        public async Task<ActionResult> GetByIdAsync(Guid id)
+        [HttpGet("{id}", Name = nameof(GetByIdClientAsync))]
+        public async Task<ActionResult> GetByIdClientAsync(Guid id)
         {
             try
             {
@@ -81,8 +81,8 @@ namespace LoremIpsumLogistica.Api.Controllers
             }
         }
 
-        [HttpPut(Name = nameof(UpdateAsync))]
-        public async Task<ActionResult<ClientResponse>> UpdateAsync(UpdateClientRequest request)
+        [HttpPut(Name = nameof(UpdateClientAsync))]
+        public async Task<ActionResult<ClientResponse>> UpdateClientAsync(UpdateClientRequest request)
         {
             try
             {
@@ -96,8 +96,8 @@ namespace LoremIpsumLogistica.Api.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}", Name = nameof(DeleteByIAsync))]
-        public async Task<ActionResult> DeleteByIAsync(Guid id)
+        [HttpDelete("{id}", Name = nameof(DeleteByIdClientAsync))]
+        public async Task<ActionResult> DeleteByIdClientAsync(Guid id)
         {
             try
             {
@@ -111,9 +111,9 @@ namespace LoremIpsumLogistica.Api.Controllers
         }
         private void GerarLinks(ClientResponse client)
         {
-            client.Links.Add(new LinkDTO(_urlHelper.Link(nameof(GetByIdAsync), new { id = client.Id }), rel: "self-client", metodo: "GET"));
-            client.Links.Add(new LinkDTO(_urlHelper.Link(nameof(UpdateAsync), new { id = client.Id }), rel: "update-client", metodo: "PUT"));
-            client.Links.Add(new LinkDTO(_urlHelper.Link(nameof(DeleteByIAsync), new { id = client.Id }), rel: "delete-client", metodo: "DELETE"));
+            client.Links.Add(new LinkDTO(_urlHelper.Link(nameof(GetByIdClientAsync), new { id = client.Id }), rel: "self-client", metodo: "GET"));
+            client.Links.Add(new LinkDTO(_urlHelper.Link(nameof(UpdateClientAsync), new { id = client.Id }), rel: "update-client", metodo: "PUT"));
+            client.Links.Add(new LinkDTO(_urlHelper.Link(nameof(DeleteByIdClientAsync), new { id = client.Id }), rel: "delete-client", metodo: "DELETE"));
         }
 
     }

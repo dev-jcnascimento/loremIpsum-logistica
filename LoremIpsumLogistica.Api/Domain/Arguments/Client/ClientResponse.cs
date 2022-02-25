@@ -15,7 +15,7 @@ namespace LoremIpsumLogistica.Api.Domain.Arguments.Client
             {
                 Id = entity.Id.ToString(),
                 FullName = entity.ToString(),
-                BirthDate = entity.BirthDate.ToString(),
+                BirthDate = entity.BirthDate.ToString("dd/MM/yyyy"),
                 Genre = entity.Genre.ToString(),
             };
         }

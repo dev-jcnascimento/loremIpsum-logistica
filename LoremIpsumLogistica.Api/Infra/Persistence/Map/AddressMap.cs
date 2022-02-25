@@ -13,6 +13,8 @@ namespace LoremIpsumLogistica.Api.Infra.Persistence.Map
             builder.Property(x => x.TypeAddress)
                 .HasColumnName("TypeAddress")
                 .HasConversion<string>();
+            builder.Property(x => x.ZipCode)
+                .HasColumnName("ZipCode");
             builder.Property(p => p.Place)
                 .HasColumnName("Place")
                 .IsRequired()

@@ -21,11 +21,12 @@ namespace LoremIpsumLogistica.Api.Infra.Persistence.IRepositories.Generic
         }
         public async Task<TEntity> GetById(TId id)
         {
-            return await _context.Set<TEntity>().FindAsync(id);
+            var teste = await _context.Set<TEntity>().FindAsync(id);
+            return teste;
         }
-        public List<TEntity> GetAll(string query)
+        public List<TEntity> GetAll()
         {
-            return _context.Set<TEntity>().FromSqlRaw(query).ToList();
+            return _context.Set<TEntity>().ToList();
         }
         public async Task<TEntity> Update(TEntity entity)
         {

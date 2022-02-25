@@ -11,7 +11,7 @@ namespace LoremIpsumLogistica.Api.Infra.Persistence.Map
             builder.ToTable("Client");
             builder.HasKey(x => x.Id);
             builder.Property(p => p.FirstName)
-                .HasColumnName("FistName")
+                .HasColumnName("FirstName")
                 .IsRequired()
                 .HasColumnType("varchar(60)");
             builder.Property(p => p.LastName)

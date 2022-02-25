@@ -31,12 +31,11 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             var pageSize = (size < 1) ? 10 : size;
             var offset = page > 0 ? (page - 1) * pageSize : 0;
 
-            string query = @"select * from client ";
-            query += $" limit {size} offset {offset}";
+            //string query = @"select * from Client c order by c.FirstName asc";
 
-            var result = _clientRepository.GetAll(query);
+            var result = _clientRepository.GetAllClient(pageSize,offset);
 
-            return (IEnumerable<ClientResponse>)result;
+            return result.Select(x => (ClientResponse)x).ToList();
         }
 
         public async Task<ClientResponse> GetByIdAsync(Guid id)
@@ -47,7 +46,8 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
 
         public async Task<IEnumerable<ClientResponse>> GetByNameAsync(string firstName, string lastName)
         {
-            return (IEnumerable<ClientResponse>)_clientRepository.GetByName(firstName, lastName);
+            var result = _clientRepository.GetByName(firstName, lastName);
+            return result.Select(x => (ClientResponse)x).ToList();
         }
 
         public async Task<ClientResponse> UpdateAsync(UpdateClientRequest request)
@@ -71,7 +71,7 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
         {
             var client = await _clientRepository.GetById(id);
             if (client == null) throw new ValidationException("Id Client not Found!");
-            return null;
+            return client;
         }
     }
 }
