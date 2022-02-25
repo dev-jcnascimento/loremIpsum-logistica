@@ -30,5 +30,14 @@ namespace LoremIpsumLogistica.Api.Infra.Persistence.IRepositories.Repositories
             }
             return null;
         }
+        public async Task DeleteClientAndAddress(Client client)
+        {
+            var addressList = _loremIpsumLogisticaContext.Addresses
+                .Where(x => x.ClientId == client.Id)
+                .ToList();
+            _loremIpsumLogisticaContext.Addresses.RemoveRange(addressList);
+            _loremIpsumLogisticaContext.Clients.Remove(client);
+            await _loremIpsumLogisticaContext.SaveChangesAsync();
+        }
     }
 }

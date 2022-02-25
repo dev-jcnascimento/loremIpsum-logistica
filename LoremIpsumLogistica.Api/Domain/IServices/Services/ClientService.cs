@@ -65,7 +65,7 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
         public async Task DeleteByI(Guid id)
         {
             var client = await ExistClient(id);
-           await _clientRepository.Delete(client);
+           await _clientRepository.DeleteClientAndAddress(client);
         }
         public async Task<Client> ExistClient(Guid id)
         {
