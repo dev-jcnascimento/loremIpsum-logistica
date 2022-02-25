@@ -27,6 +27,10 @@ namespace LoremIpsumLogistica.Api.Domain.Entities
             BirthDate = birthDate;
             Genre = genre;
         }
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName}";
+        }
     }
 
 }

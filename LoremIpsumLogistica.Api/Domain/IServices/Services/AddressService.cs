@@ -1,4 +1,6 @@
-﻿namespace LoremIpsumLogistica.Api.Domain.IServices.Services
+﻿using LoremIpsumLogistica.Api.Domain.Arguments.Address;
+
+namespace LoremIpsumLogistica.Api.Domain.IServices.Services
 {
     public class AddressService : IAddressService
     {
@@ -18,7 +20,7 @@
         {
             throw new NotImplementedException();
         }
-        public Task<AddressResponse> Update(Guid id, UpdateAddressRequest request)
+        public Task<AddressResponse> Update(UpdateAddressRequest request)
         {
             throw new NotImplementedException();
         }
