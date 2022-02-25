@@ -16,7 +16,7 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             _clientRepository = clientRepository;
         }
 
-        public async Task<AddressResponse> Create(CreateAddressRequest request)
+        public async Task<AddressResponse> CreateAsync(CreateAddressRequest request)
         {
             var address = new Address(
               request.ClientId,
@@ -30,7 +30,7 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             var result = await _addressRepository.Create(address);
             return (AddressResponse)result;
         }
-        public async Task<IEnumerable<AddressResponse>> GetAll(int page, int size)
+        public async Task<IEnumerable<AddressResponse>> GetAllAsync(int page, int size)
         {
             var pageSize = (size < 1) ? 10 : size;
             var offset = page > 0 ? (page - 1) * pageSize : 0;
@@ -40,18 +40,18 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
 
             return (IEnumerable<AddressResponse>)_addressRepository.GetAll(query);
         }
-        public async Task<AddressResponse> GetById(Guid id)
+        public async Task<AddressResponse> GetByIdAsync(Guid id)
         {
             var address = await ExistAddress(id);
             return (AddressResponse)address;
         }
-        public async Task<IEnumerable<AddressResponse>> GetByClientId(Guid clientId)
+        public async Task<IEnumerable<AddressResponse>> GetByClientIdAsync(Guid clientId)
         {
             await ExistClient(clientId);
             var result = await _addressRepository.GetByClientId(clientId);
             return (IEnumerable<AddressResponse>)result;
         }
-        public async Task<AddressResponse> Update(UpdateAddressRequest request)
+        public async Task<AddressResponse> UpdateAsync(UpdateAddressRequest request)
         {
             var address = await ExistAddress(request.Id);
             address.Update(
@@ -66,7 +66,7 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             var result = await _addressRepository.Update(address);
             return (AddressResponse)result;
         }
-        public async Task DeleteByI(Guid id)
+        public async Task DeleteByIAsync(Guid id)
         {
             var address = await ExistAddress(id);
             await _addressRepository.Delete(address);
