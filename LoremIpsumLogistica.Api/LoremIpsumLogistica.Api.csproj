@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Infra\Persistence\Map\" />
+    <Folder Include="Infra\Migrations\" />
   </ItemGroup>
 
 </Project>

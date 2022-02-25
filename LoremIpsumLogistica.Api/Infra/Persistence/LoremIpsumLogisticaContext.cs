@@ -1,4 +1,5 @@
 ﻿using LoremIpsumLogistica.Api.Domain.Entities;
+using LoremIpsumLogistica.Api.Infra.Persistence.Map;
 using Microsoft.EntityFrameworkCore;
 
 namespace LoremIpsumLogistica.Api.Infra.Persistence
@@ -13,6 +14,8 @@ namespace LoremIpsumLogistica.Api.Infra.Persistence
         public DbSet<Address> Addresses { get; set; }
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
+            modelbuilder.ApplyConfiguration(new ClientMap());
+            modelbuilder.ApplyConfiguration(new AddressMap());
 
             base.OnModelCreating(modelbuilder);
         }
