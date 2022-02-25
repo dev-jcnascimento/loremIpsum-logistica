@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Compile Remove="Address.cs" />
-    <Compile Remove="Address.Tests.cs" />
   </ItemGroup>
 
   <ItemGroup>
