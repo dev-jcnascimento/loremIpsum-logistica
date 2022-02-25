@@ -14,7 +14,7 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             _clientRepository = clientRepository;
         }
 
-        public async Task<ClientResponse> Create(CreateClientRequest request)
+        public async Task<ClientResponse> CreateAsync(CreateClientRequest request)
         {
             var cliente = new Client(
                 request.FirstName,
@@ -26,7 +26,7 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             return (ClientResponse)result;
         }
 
-        public async Task<IEnumerable<ClientResponse>> GetAll(int page, int size)
+        public async Task<IEnumerable<ClientResponse>> GetAllAsync(int page, int size)
         {
             var pageSize = (size < 1) ? 10 : size;
             var offset = page > 0 ? (page - 1) * pageSize : 0;
@@ -39,20 +39,20 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             return (IEnumerable<ClientResponse>)result;
         }
 
-        public async Task<ClientResponse> GetById(Guid id)
+        public async Task<ClientResponse> GetByIdAsync(Guid id)
         {
-            var client = await ExistClient(id);
+            var client = await ExistClientAsync(id);
             return (ClientResponse)client;
         }
 
-        public async Task<IEnumerable<ClientResponse>> GetByName(string firstName, string lastName)
+        public async Task<IEnumerable<ClientResponse>> GetByNameAsync(string firstName, string lastName)
         {
             return (IEnumerable<ClientResponse>)_clientRepository.GetByName(firstName, lastName);
         }
 
-        public async Task<ClientResponse> Update(UpdateClientRequest request)
+        public async Task<ClientResponse> UpdateAsync(UpdateClientRequest request)
         {
-            var client = await ExistClient(request.Id);
+            var client = await ExistClientAsync(request.Id);
             client.Update(
                 request.FirstName,
                 request.LastName,
@@ -62,12 +62,12 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             var result = await _clientRepository.Update(client);
             return (ClientResponse)result;
         }
-        public async Task DeleteByI(Guid id)
+        public async Task DeleteByIAsync(Guid id)
         {
-            var client = await ExistClient(id);
+            var client = await ExistClientAsync(id);
            await _clientRepository.DeleteClientAndAddress(client);
         }
-        public async Task<Client> ExistClient(Guid id)
+        public async Task<Client> ExistClientAsync(Guid id)
         {
             var client = await _clientRepository.GetById(id);
             if (client == null) throw new ValidationException("Id Client not Found!");

@@ -4,11 +4,11 @@ namespace LoremIpsumLogistica.Api.Domain.IServices
 {
     public interface IClientService
     {
-        Task<ClientResponse> Create(CreateClientRequest request);
-        Task<IEnumerable<ClientResponse>> GetAll(int page, int size);
-        Task<ClientResponse> GetById(Guid id);
-        Task<IEnumerable<ClientResponse>> GetByName(string firstName, string lastName);
-        Task<ClientResponse> Update(UpdateClientRequest request);
-        Task DeleteByI(Guid id);
+        Task<ClientResponse> CreateAsync(CreateClientRequest request);
+        Task<IEnumerable<ClientResponse>> GetAllAsync(int page, int size);
+        Task<ClientResponse> GetByIdAsync(Guid id);
+        Task<IEnumerable<ClientResponse>> GetByNameAsync(string firstName, string lastName);
+        Task<ClientResponse> UpdateAsync(UpdateClientRequest request);
+        Task DeleteByIAsync(Guid id);
     }
 }
