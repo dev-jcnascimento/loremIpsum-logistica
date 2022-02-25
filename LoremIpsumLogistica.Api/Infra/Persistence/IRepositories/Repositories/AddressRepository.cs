@@ -3,12 +3,19 @@ using LoremIpsumLogistica.Api.Infra.Persistence.IRepositories.Generic;
 
 namespace LoremIpsumLogistica.Api.Infra.Persistence.IRepositories.Repositories
 {
-    public class AddressRepository : BaseRepository<Address,Guid>, IAddressRepository
+    public class AddressRepository : BaseRepository<Address, Guid>, IAddressRepository
     {
         protected readonly LoremIpsumLogisticaContext _loremIpsumLogisticaContext;
         public AddressRepository(LoremIpsumLogisticaContext context) : base(context)
         {
             _loremIpsumLogisticaContext = context;
+        }
+        public async Task<List<Address>> GetByClientId(Guid id)
+        {
+            var addressList = _loremIpsumLogisticaContext.Addresses
+                .Where(a => a.ClientId == id)
+                .ToList();
+            return addressList;
         }
     }
 }

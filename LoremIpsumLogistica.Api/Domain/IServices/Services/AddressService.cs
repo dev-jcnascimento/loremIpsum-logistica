@@ -27,8 +27,8 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
               request.Complement,
               request.District,
               request.State);
-            //var result = await _addressRepository.Create(address);
-            return (AddressResponse)null;
+            var result = await _addressRepository.Create(address);
+            return (AddressResponse)result;
         }
         public async Task<IEnumerable<AddressResponse>> GetAll(int page, int size)
         {
@@ -38,9 +38,7 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             string query = @"select * from address ";
             query += $" limit {size} offset {offset}";
 
-            //var result = await _addressRepository.FindWithPagedSearch(query);
-
-            return (IEnumerable<AddressResponse>)null;
+            return (IEnumerable<AddressResponse>)_addressRepository.GetAll(query);
         }
         public async Task<AddressResponse> GetById(Guid id)
         {
@@ -50,8 +48,8 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
         public async Task<IEnumerable<AddressResponse>> GetByClientId(Guid clientId)
         {
             await ExistClient(clientId);
-            //var result = await _addressRepository.GetByClientId(clientId);
-            return (IEnumerable<AddressResponse>)null;
+            var result = await _addressRepository.GetByClientId(clientId);
+            return (IEnumerable<AddressResponse>)result;
         }
         public async Task<AddressResponse> Update(UpdateAddressRequest request)
         {
@@ -65,25 +63,24 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
               request.District,
               request.State);
 
-            //var result = await _addressRepository.Update(address);
-            return (AddressResponse)null;
+            var result = await _addressRepository.Update(address);
+            return (AddressResponse)result;
         }
         public async Task DeleteByI(Guid id)
         {
-            await ExistAddress(id);
-            _addressRepository.Delete(id);
+            var address = await ExistAddress(id);
+            await _addressRepository.Delete(address);
         }
         private async Task<Address> ExistAddress(Guid id)
         {
-            //var address = await _addressRepository.GetById(id);
-            //if (address == null) throw new ValidationException("Id Address not Found!");
-            return null;
+            var address = await _addressRepository.GetById(id);
+            if (address == null) throw new ValidationException("Id Address not Found!");
+            return address;
         }
         private async Task ExistClient(Guid id)
         {
-            //var client = await _clientRepository.GetById(id);
-            //if (client == null) throw new ValidationException("Id Client not Found!");
-
+            var client = await _clientRepository.GetById(id);
+            if (client == null) throw new ValidationException("Id Client not Found!");
         }
     }
 }
