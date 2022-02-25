@@ -6,7 +6,7 @@ namespace LoremIpsumLogistica.Api.Domain.Extensions.Validations
     {
         public static string Validating(string state)
         {
-            if (string.IsNullOrEmpty(state) || state.Length < 0)
+            if (string.IsNullOrEmpty(state))
             {
                 throw new ValidationException("State cannot be empty");
             }

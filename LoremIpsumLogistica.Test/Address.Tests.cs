@@ -26,15 +26,15 @@ namespace LoremIpsumLogistica.Test
         public void AddressTest_ZipCode_Equals8Numbers_ReturnTrue()
         {
             _testOutputHelper.WriteLine("Equals8Number");
-            var cep = _fixture.addressFailed.ZipCode;
-            Assert.True(cep == 8);
+            var cep = _fixture.addressPassed.ZipCode;
+            Assert.True(cep.ToString().Length == 8);
         }
         [Fact]
         public void AddressTest_ZipCode_Different8Numbers_ReturnFalse()
         {
             _testOutputHelper.WriteLine("Different8Number");
-            var cep = _fixture.addressFailed.ZipCode;
-            Assert.False(cep != 8);
+            var cep = _fixture.addressPassed.ZipCode;
+            Assert.False(cep.ToString().Length != 8);
         }
         [Fact]
         public void AddressTest_ZipCodeValidator_Exception()
@@ -47,20 +47,20 @@ namespace LoremIpsumLogistica.Test
         public void AddressTest_Place_BiggerThen5charLess150_ReturnTrue()
         {
             _testOutputHelper.WriteLine("BiggerThen5charLess150");
-            var name = _fixture.addressFailed.Place.Length;
-            Assert.True(name < 150 && name > 5);
+            var place = _fixture.addressPassed.Place.Length;
+            Assert.True(place < 150 && place > 5);
         }
         [Fact]
         public void AddressTest_Place_IsNullOrEmpty_ReturnFalse()
         {
             _testOutputHelper.WriteLine("Ckeck_IsNullOrEmpty");
-            Assert.False(string.IsNullOrEmpty(_fixture.addressFailed.Place));
+            Assert.False(string.IsNullOrEmpty(_fixture.addressPassed.Place));
         }
         [Fact]
         public void AddressTest_Place_Null_Exception()
         {
             var nameException = Assert.Throws<ValidationException>(() =>
-            new Address(TypeAddress.Residential, 78655548, "fwe", 568, "A", "Palmira", "RJ"));
+            new Address(TypeAddress.Residential, 78655548, "", 568, "A", "Palmira", "RJ"));
             Assert.Equal("The Place cannot be empty!", nameException.Message);
         }
         [Fact]
@@ -74,7 +74,7 @@ namespace LoremIpsumLogistica.Test
         public void AddressTest_Number_Bigger0_ReturnTrue()
         {
             _testOutputHelper.WriteLine("Bigger0");
-            var number = _fixture.addressFailed.Number;
+            var number = _fixture.addressPassed.Number;
             Assert.True(number > 0);
         }      
         [Fact]
@@ -88,42 +88,42 @@ namespace LoremIpsumLogistica.Test
         public void AddressTest_State_Equals2Char_ReturnTrue()
         {
             _testOutputHelper.WriteLine("Equals2Char");
-            var uf = _fixture.addressFailed.State.Length;
-            Assert.True(uf == 2);
+            var state = _fixture.addressPassed.State.Length;
+            Assert.True(state == 2);
         }
         [Fact]
         public void AddressTest_State_Validating_Null_Exception()
         {
             var nameException = Assert.Throws<ValidationException>(() =>
-            new Address(TypeAddress.Residential, 78655548, MakeString(40), 0, "A", "Palmira", ""));
+            new Address(TypeAddress.Residential, 78655548, MakeString(40), 52, "A", "Palmira", ""));
             Assert.Equal("State cannot be empty", nameException.Message);
         }
         [Fact]
         public void AddressTest_State_Validating_Equals2Char_Exception()
         {
             var nameException = Assert.Throws<ValidationException>(() =>
-            new Address(TypeAddress.Residential, 78655548, MakeString(40), 0, "A", "Palmira", "M"));
-            Assert.Equal("State cannot be empty", nameException.Message);
+            new Address(TypeAddress.Residential, 78655548, MakeString(40), 52, "A", "Palmira", "M"));
+            Assert.Equal("State must contain 2 characters", nameException.Message);
         }
         [Fact]
         public void AddressTest_State_Validating_ContainNumbers_Exception()
         {
             var nameException = Assert.Throws<ValidationException>(() =>
-            new Address(TypeAddress.Residential, 78655548, MakeString(40), 0, "A", "Palmira", "M2"));
+            new Address(TypeAddress.Residential, 78655548, MakeString(40), 56, "A", "Palmira", "M2"));
             Assert.Equal("State cannot contain numbers and special characters", nameException.Message);
         }
         [Fact]
         public void AddressTest_State_Validating_ContainSpecialCharacters_Exception()
         {
             var nameException = Assert.Throws<ValidationException>(() =>
-            new Address(TypeAddress.Residential, 78655548, MakeString(40), 0, "A", "Palmira", "M$"));
+            new Address(TypeAddress.Residential, 78655548, MakeString(40), 56, "A", "Palmira", "M$"));
             Assert.Equal("State cannot contain numbers and special characters", nameException.Message);
         }
         [Fact]
         public void AddressTest_State_Validating_ContainWhiteSpace_Exception()
         {
             var nameException = Assert.Throws<ValidationException>(() =>
-            new Address(TypeAddress.Residential, 78655548, MakeString(40), 0, "A", "Palmira", "M "));
+            new Address(TypeAddress.Residential, 78655548, MakeString(40), 59, "A", "Palmira", "M "));
             Assert.Equal("State cannot contain numbers and special characters", nameException.Message);
         }
         public static string MakeString(int length)

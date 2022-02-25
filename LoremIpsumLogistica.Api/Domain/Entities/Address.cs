@@ -28,7 +28,7 @@ namespace LoremIpsumLogistica.Api.Domain.Entities
         }
         private int ZipCodeValidator(int zipCode)
         {
-            if (zipCode.ToString().Length > 8 ) throw new ValidationException("Zip Code must contain 8 numbers");
+            if (zipCode.ToString().Length != 8 ) throw new ValidationException("Zip Code must contain 8 numbers");
             return zipCode;
         }
         private int NumberValidator(int number)
