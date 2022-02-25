@@ -20,4 +20,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LoremIpsumLogistica.Api\LoremIpsumLogistica.Api.csproj" />
+  </ItemGroup>
+
 </Project>

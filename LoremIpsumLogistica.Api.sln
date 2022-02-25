@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoremIpsumLogistica.Api", "LoremIpsumLogistica.Api\LoremIpsumLogistica.Api.csproj", "{A59476AE-5E3F-453C-9825-8B9A649C3319}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoremIpsumLogistica.Test", "LoremIpsumLogistica.Test\LoremIpsumLogistica.Test.csproj", "{95701003-5764-45A4-BDF3-ADD8D4D03501}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A59476AE-5E3F-453C-9825-8B9A649C3319}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A59476AE-5E3F-453C-9825-8B9A649C3319}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A59476AE-5E3F-453C-9825-8B9A649C3319}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95701003-5764-45A4-BDF3-ADD8D4D03501}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95701003-5764-45A4-BDF3-ADD8D4D03501}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95701003-5764-45A4-BDF3-ADD8D4D03501}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95701003-5764-45A4-BDF3-ADD8D4D03501}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
