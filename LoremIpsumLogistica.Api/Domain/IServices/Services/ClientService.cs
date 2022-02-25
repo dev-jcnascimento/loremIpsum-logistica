@@ -34,7 +34,7 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             string query = @"select * from client ";
             query += $" limit {size} offset {offset}";
 
-            var result = await _clientRepository.FindWithPagedSearch(query);
+            var result = _clientRepository.GetAll(query);
 
             return (IEnumerable<ClientResponse>)result;
         }
@@ -45,7 +45,7 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             return (ClientResponse)client;
         }
 
-        public Task<IEnumerable<ClientResponse>> GetByName(string firstName, string lastName)
+        public async Task<IEnumerable<ClientResponse>> GetByName(string firstName, string lastName)
         {
             return (IEnumerable<ClientResponse>)_clientRepository.GetByName(firstName, lastName);
         }
@@ -64,14 +64,14 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
         }
         public async Task DeleteByI(Guid id)
         {
-            await ExistClient(id);
-            _clientRepository.Delete(id);
+            var client = await ExistClient(id);
+           await _clientRepository.Delete(client);
         }
         public async Task<Client> ExistClient(Guid id)
         {
             var client = await _clientRepository.GetById(id);
             if (client == null) throw new ValidationException("Id Client not Found!");
-            return client;
+            return null;
         }
     }
 }

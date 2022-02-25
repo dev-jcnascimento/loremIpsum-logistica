@@ -1,8 +1,21 @@
+using LoremIpsumLogistica.Api.Infra.Persistence;
+using LoremIpsumLogistica.Api.Infra.Persistence.IRepositories;
+using LoremIpsumLogistica.Api.Infra.Persistence.IRepositories.Generic;
+using LoremIpsumLogistica.Api.Infra.Persistence.IRepositories.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddMvc();
+builder.Services.AddDbContext<LoremIpsumLogisticaContext>(options =>
+                    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStrings")));
+
+builder.Services.AddScoped(typeof(IBaseRepository<,>), typeof(BaseRepository<,>));
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IAddressRepository, AddressRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -10,5 +10,25 @@ namespace LoremIpsumLogistica.Api.Infra.Persistence.IRepositories.Repositories
         {
             _loremIpsumLogisticaContext = context;
         }
+        public List<Client> GetByName(string firstName, string lastName)
+        {
+            if (!string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(lastName))
+            {
+                return _loremIpsumLogisticaContext.Clients.Where(
+                    p => p.FirstName.Contains(firstName)
+                    && p.LastName.Contains(lastName)).ToList();
+            }
+            else if (string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(lastName))
+            {
+                return _loremIpsumLogisticaContext.Clients.Where(
+                    p => p.LastName.Contains(lastName)).ToList();
+            }
+            else if (!string.IsNullOrWhiteSpace(firstName) && string.IsNullOrWhiteSpace(lastName))
+            {
+                return _loremIpsumLogisticaContext.Clients.Where(
+                    p => p.FirstName.Contains(firstName)).ToList();
+            }
+            return null;
+        }
     }
 }

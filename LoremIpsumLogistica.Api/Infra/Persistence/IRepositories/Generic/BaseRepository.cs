@@ -1,4 +1,5 @@
 ﻿using LoremIpsumLogistica.Api.Domain.Entities.Base;
+using Microsoft.EntityFrameworkCore;
 
 namespace LoremIpsumLogistica.Api.Infra.Persistence.IRepositories.Generic
 {
@@ -12,36 +13,35 @@ namespace LoremIpsumLogistica.Api.Infra.Persistence.IRepositories.Generic
         {
             _context = context;
         }
-       public TEntity Create(TEntity item)
+        public async Task<TEntity> Create(TEntity entity)
         {
-            return _context.Set<TEntity>().Add(item);
-            throw new NotImplementedException();
-
+            _context.Set<TEntity>().Add(entity);
+            await _context.SaveChangesAsync();
+            return entity;
         }
-        public TEntity GetById(TId id)
+        public async Task<TEntity> GetById(TId id)
         {
-            throw new NotImplementedException();
+            return await _context.Set<TEntity>().FindAsync(id);
         }
         public List<TEntity> GetAll(string query)
         {
-            throw new NotImplementedException();
+            return _context.Set<TEntity>().FromSqlRaw(query).ToList();
+        }
+        public async Task<TEntity> Update(TEntity entity)
+        {
+            _context.Set<TEntity>().Update(entity);
+            await _context.SaveChangesAsync();
+            return entity;
 
         }
-        public TEntity Update(TEntity item)
+        public async Task Delete(TEntity entity)
         {
-            var entity = _context.Set<TEntity>().Update(item);
-            throw new NotImplementedException();
-
+            _context.Set<TEntity>().Remove(entity);
+            await _context.SaveChangesAsync();
         }
-        public void Delete(TId id)
+        public bool Exists(Func<TEntity, bool> where)
         {
-            throw new NotImplementedException();
-
-        }
-        public bool Exists(TId id)
-        {
-            return _context.Set<TEntity>().Exists(id);
-            throw new NotImplementedException();
+            return _context.Set<TEntity>().Any(where);
 
         }
     }

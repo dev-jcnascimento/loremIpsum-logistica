@@ -4,11 +4,11 @@
         where TEntity : class
         where TId : struct
     {
-        TEntity Create(TEntity item);
-        TEntity GetById(TId id);
+        Task<TEntity> Create(TEntity entity);
+        Task<TEntity> GetById(TId id);
         List<TEntity> GetAll(string query);
-        TEntity Update(TEntity item);
-        void Delete(TId id);
-        bool Exists(TId id);
+        Task<TEntity> Update(TEntity entity);
+        Task Delete(TEntity entity);
+        bool Exists(Func<TEntity, bool> where);
     }
 }
