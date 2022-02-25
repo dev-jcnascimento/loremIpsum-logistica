@@ -1,4 +1,5 @@
 ﻿using LoremIpsumLogistica.Api.Domain.Enums;
+using LoremIpsumLogistica.Api.Domain.Extensions.Validations;
 
 namespace LoremIpsumLogistica.Api.Domain.Entities
 {
@@ -11,11 +12,10 @@ namespace LoremIpsumLogistica.Api.Domain.Entities
         public Genre Genre { get; private set; }
         private Client()
         {}
-
         public Client(string firstName, string lastName, DateTime birthDate, Genre genre)
         {
-            FirstName = firstName;
-            LastName = lastName;
+            FirstName = StringValidator.Validating("FirstName", firstName,3,60);
+            LastName = StringValidator.Validating("LastName", lastName, 3, 60);
             BirthDate = birthDate;
             Genre = genre;
         }

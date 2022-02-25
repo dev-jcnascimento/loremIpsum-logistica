@@ -9,7 +9,7 @@ namespace LoremIpsumLogistica.Test
 {
     public class ClientFixture
     {
-        public Client client => new Client("","",DateTime.Parse("01/01/1980"), Genre.Male);
+        public Client client => new Client("First Name","Last Name",DateTime.Parse("01/01/1980"), Genre.Male);
     }
     public class ClientTests : IClassFixture<ClientFixture>
     {
@@ -68,21 +68,14 @@ namespace LoremIpsumLogistica.Test
         {
             var nameException = Assert.Throws<ValidationException>(() =>
             new Client("First Name", MakeString(2), DateTime.Parse("01/01/1980"), Genre.Male));
-            Assert.Equal("The FirstName must contain more than 3 characters and less than 60", nameException.Message);
+            Assert.Equal("The LastName must contain more than 3 characters and less than 60", nameException.Message);
         }
         [Fact]
         public void ClientTest_LastName_Less60Char_Exception()
         {
             var nameException = Assert.Throws<ValidationException>(() =>
             new Client("First Name", MakeString(80), DateTime.Parse("01/01/1980"), Genre.Male));
-            Assert.Equal("The FirstName must contain more than 3 characters and less than 60", nameException.Message);
-        }
-        [Fact]
-        public void ClientTest_BirthDate_IsNotNullOrEmpty_Exception()
-        {
-            var nameException = Assert.Throws<ValidationException>(() =>
-            new Client("First Name", "Last Name", DateTime.Parse(" "), Genre.Male));
-            Assert.Equal("The FirstName must contain more than 3 characters and less than 60", nameException.Message);
+            Assert.Equal("The LastName must contain more than 3 characters and less than 60", nameException.Message);
         }
         public static string MakeString(int length)
         {
