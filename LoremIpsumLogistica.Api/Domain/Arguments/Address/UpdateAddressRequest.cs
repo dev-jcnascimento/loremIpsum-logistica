@@ -1,9 +1,11 @@
-﻿namespace LoremIpsumLogistica.Api.Domain.Arguments.Address
+﻿using LoremIpsumLogistica.Api.Domain.Enums;
+
+namespace LoremIpsumLogistica.Api.Domain.Arguments.Address
 {
     public class UpdateAddressRequest
     {
         public Guid Id { get; set; }
-        public string TypeAddress { get; set; }
+        public TypeAddress TypeAddress { get; set; }
         public int ZipCode { get; set; }
         public string Place { get; set; }
         public int Number { get; set; }
