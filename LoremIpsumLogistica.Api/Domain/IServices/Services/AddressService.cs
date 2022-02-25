@@ -1,5 +1,6 @@
 ﻿using LoremIpsumLogistica.Api.Domain.Arguments.Address;
 using LoremIpsumLogistica.Api.Domain.Entities;
+using LoremIpsumLogistica.Api.Infra.Persistence.IRepositories;
 using System.ComponentModel.DataAnnotations;
 
 namespace LoremIpsumLogistica.Api.Domain.IServices.Services
