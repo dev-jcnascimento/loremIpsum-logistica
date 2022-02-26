@@ -38,9 +38,9 @@ namespace LoremIpsumLogistica.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AddressResponse>>> GetAllAsync(int? page, int? size)
+        public async Task<ActionResult<IEnumerable<AddressResponse>>> GetAllAsync(int page, int size)
         {
-            var address = await _addressService.GetAllAsync((int)page, (int)size);
+            var address = await _addressService.GetAllAsync(page, size);
 
             address.ToList().ForEach(c => GerarLinks(c));
 

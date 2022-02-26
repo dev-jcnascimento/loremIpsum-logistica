@@ -35,10 +35,8 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             var pageSize = (size < 1) ? 10 : size;
             var offset = page > 0 ? (page - 1) * pageSize : 0;
 
-            string query = @"select * from address ";
-            query += $" limit {size} offset {offset}";
-
-            return (IEnumerable<AddressResponse>)_addressRepository.GetAll();
+            var result = _addressRepository.GetAllAddress(pageSize, offset);
+            return result.Select(x => (AddressResponse)x).ToList();
         }
         public async Task<AddressResponse> GetByIdAsync(Guid id)
         {
@@ -49,7 +47,7 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
         {
             await ExistClient(clientId);
             var result = await _addressRepository.GetByClientId(clientId);
-            return (IEnumerable<AddressResponse>)result;
+            return result.Select(x => (AddressResponse)x).ToList();
         }
         public async Task<AddressResponse> UpdateAsync(UpdateAddressRequest request)
         {

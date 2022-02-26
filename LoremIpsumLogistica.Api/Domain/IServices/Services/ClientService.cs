@@ -31,8 +31,6 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             var pageSize = (size < 1) ? 10 : size;
             var offset = page > 0 ? (page - 1) * pageSize : 0;
 
-            //string query = @"select * from Client c order by c.FirstName asc";
-
             var result = _clientRepository.GetAllClient(pageSize,offset);
 
             return result.Select(x => (ClientResponse)x).ToList();

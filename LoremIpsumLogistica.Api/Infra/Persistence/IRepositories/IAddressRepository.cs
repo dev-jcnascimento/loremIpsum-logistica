@@ -6,5 +6,7 @@ namespace LoremIpsumLogistica.Api.Infra.Persistence.IRepositories
     public interface IAddressRepository : IBaseRepository<Address,Guid>
     {
         Task<List<Address>> GetByClientId(Guid id);
+        List<Address> GetAllAddress(int pageSize, int offset);
+
     }
 }

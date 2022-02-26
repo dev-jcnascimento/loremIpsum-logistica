@@ -17,5 +17,13 @@ namespace LoremIpsumLogistica.Api.Infra.Persistence.IRepositories.Repositories
                 .ToList();
             return addressList;
         }
+        public List<Address> GetAllAddress(int pageSize, int offset)
+        {
+            return _loremIpsumLogisticaContext.Addresses
+                .OrderBy(x => x.ClientId)
+                .Skip(offset)
+                .Take(pageSize)
+                .ToList();
+        }
     }
 }
