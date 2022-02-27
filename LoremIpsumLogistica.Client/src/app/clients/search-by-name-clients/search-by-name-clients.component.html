@@ -1,0 +1,57 @@
+<div>
+    <form fxLayout="column" fxLayoutAlign="start stretch" (ngSubmit)="getByName()" #formClient="ngForm">
+
+        <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+            <mat-form-field appearance="legacy" fxFlex="40">
+                <mat-label>Nome</mat-label>
+                <input matInput type="text" [(ngModel)]="firstname" name="firstName">
+            </mat-form-field>
+            <mat-form-field appearance="legacy" fxFlex="40">
+                <mat-label>Sobrenome</mat-label>
+                <input matInput type="text" [(ngModel)]="lastname" name="lastname">
+            </mat-form-field>
+            <button mat-button color="primary" type="submit">Buscar
+            </button>
+        </div>
+    </form>
+</div>
+
+
+<table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="fullName">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="birtDate">
+        <th mat-header-cell *matHeaderCellDef> Nascimento </th>
+        <td mat-cell *matCellDef="let element"> {{element.birthDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="genre">
+        <th mat-header-cell *matHeaderCellDef> Genero </th>
+        <td mat-cell *matCellDef="let element"> {{element.genre}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actionsDelete">
+        <th mat-header-cell *matHeaderCellDef> Deletar </th>
+        <td mat-cell *matCellDef="let element;  let j = index;">
+            <button mat-icon-button color="accent" (click)="deleteTicket(element.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actionsEdit">
+        <th mat-header-cell *matHeaderCellDef> Editar </th>
+        <td mat-cell *matCellDef="let element;  let j = index;">
+            <button mat-icon-button color="primary">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

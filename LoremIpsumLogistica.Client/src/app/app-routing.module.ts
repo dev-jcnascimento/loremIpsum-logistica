@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClientsComponent } from './clients/clients.component';
-import { AddressesComponent } from './addresses/addresses.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RouterModule, Routes } from '@angular/router';
+import { GetallClientsComponent } from './clients/getall-clients/getall-clients.component';
+import { RegisterClientsComponent } from './clients/register-clients/register-clients.component';
 
 const appRoutes: Routes = [
-  {path:'clients', component: ClientsComponent},
-  {path:'addresses', component: AddressesComponent},
+  {path:'getall-clients', component: GetallClientsComponent},
+  {path:'register-clients', component: RegisterClientsComponent},
   {path:'**', component: PageNotFoundComponent},
+
 ]
 
 @NgModule({
