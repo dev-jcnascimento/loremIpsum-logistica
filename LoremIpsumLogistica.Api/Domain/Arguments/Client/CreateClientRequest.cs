@@ -6,7 +6,7 @@ namespace LoremIpsumLogistica.Api.Domain.Arguments.Client
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string BirthDate { get; set; }
-        public Genre Genre { get; set; }
+        public DateTime BirthDate { get; set; }
+        public string Genre { get; set; }
     }
 }

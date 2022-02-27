@@ -6,7 +6,7 @@
     {
         Task<TEntity> Create(TEntity entity);
         Task<TEntity> GetById(TId id);
-        List<TEntity> GetAll();
+        Task<List<TEntity>> GetAll();
         Task<TEntity> Update(TEntity entity);
         Task Delete(TEntity entity);
         bool Exists(Func<TEntity, bool> where);

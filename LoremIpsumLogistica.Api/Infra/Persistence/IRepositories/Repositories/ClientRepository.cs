@@ -39,7 +39,7 @@ namespace LoremIpsumLogistica.Api.Infra.Persistence.IRepositories.Repositories
             _loremIpsumLogisticaContext.Clients.Remove(client);
             await _loremIpsumLogisticaContext.SaveChangesAsync();
         }
-        public List<Client> GetAllClient(int pageSize, int offset)
+        public List<Client> GetAllPaginationAsync(int pageSize, int offset)
         {
             return _loremIpsumLogisticaContext.Clients
                 .OrderBy(x => x.FirstName)

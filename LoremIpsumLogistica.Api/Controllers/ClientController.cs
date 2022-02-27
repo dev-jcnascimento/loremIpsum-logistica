@@ -38,9 +38,19 @@ namespace LoremIpsumLogistica.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ClientResponse>>> GetAllAsync(int page, int size)
+        public async Task<ActionResult<IEnumerable<ClientResponse>>> GetAllAsync()
         {
-            var client = await _clientService.GetAllAsync(page, size);
+            var client = await _clientService.GetAllAsync();
+
+            client.ToList().ForEach(c => GerarLinks(c));
+
+            return Ok(client);
+        }
+
+        [HttpGet("{page}/{size}")]
+        public async Task<ActionResult<IEnumerable<ClientResponse>>> GetAllPaginationAsync(int page, int size)
+        {
+            var client = await _clientService.GetAllPaginationAsync(page, size);
 
             client.ToList().ForEach(c => GerarLinks(c));
 
@@ -70,6 +80,8 @@ namespace LoremIpsumLogistica.Api.Controllers
             try
             {
                 var client = await _clientService.GetByNameAsync(firstName, lastName);
+
+                if (client == null) return NoContent();
 
                 client.ToList().ForEach(c => GerarLinks(c));
 

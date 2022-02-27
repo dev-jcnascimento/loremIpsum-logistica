@@ -1,5 +1,6 @@
 ﻿using LoremIpsumLogistica.Api.Domain.Arguments.Client;
 using LoremIpsumLogistica.Api.Domain.Entities;
+using LoremIpsumLogistica.Api.Domain.Enums;
 using LoremIpsumLogistica.Api.Infra.Persistence.IRepositories;
 using System.ComponentModel.DataAnnotations;
 
@@ -16,22 +17,30 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
 
         public async Task<ClientResponse> CreateAsync(CreateClientRequest request)
         {
+            Genre genre = (Genre)int.Parse(request.Genre);
             var cliente = new Client(
                 request.FirstName,
                 request.LastName,
-                DateTime.Parse(request.BirthDate),
-                request.Genre
+                request.BirthDate,
+                genre
                 );
             var result = await _clientRepository.Create(cliente);
             return (ClientResponse)result;
         }
 
-        public async Task<IEnumerable<ClientResponse>> GetAllAsync(int page, int size)
+        public async Task<IEnumerable<ClientResponse>> GetAllAsync()
+        {
+            var result = await _clientRepository.GetAll();
+
+            return result.Select(x => (ClientResponse)x).ToList();
+        }
+
+        public async Task<IEnumerable<ClientResponse>> GetAllPaginationAsync(int page, int size)
         {
             var pageSize = (size < 1) ? 10 : size;
             var offset = page > 0 ? (page - 1) * pageSize : 0;
 
-            var result = _clientRepository.GetAllClient(pageSize,offset);
+            var result = _clientRepository.GetAllPaginationAsync(pageSize, offset);
 
             return result.Select(x => (ClientResponse)x).ToList();
         }
@@ -45,6 +54,7 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
         public async Task<IEnumerable<ClientResponse>> GetByNameAsync(string firstName, string lastName)
         {
             var result = _clientRepository.GetByName(firstName, lastName);
+            if (result == null) return null;
             return result.Select(x => (ClientResponse)x).ToList();
         }
 

@@ -21,6 +21,8 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(builder =>
     .AllowAnyHeader();
 }));
 
+
+
 builder.Services.AddControllers();
 builder.Services.AddDbContext<LoremIpsumLogisticaContext>(options =>
                     options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStrings")));
@@ -78,6 +80,8 @@ if (app.Environment.IsDevelopment())
             "LoremIpsumLogistica.Api - v1");
     });
 }
+
+app.UseCors();
 
 app.UseHttpsRedirection();
 
