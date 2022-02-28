@@ -6,6 +6,16 @@ export interface Clients {
     firstName ?: string;
     lastName ?: string;
     birthDate: string;
+    birthDateString ?: string;
+    genre: string;
+    // addresses: Addresses[];
+}
+
+export interface ClientEdit {
+    id ?: string;
+    firstName ?: string;
+    lastName ?: string;
+    birthDate: string;
     genre: string;
     // addresses: Addresses[];
 }

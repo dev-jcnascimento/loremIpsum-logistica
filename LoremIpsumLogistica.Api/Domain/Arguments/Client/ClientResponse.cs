@@ -6,7 +6,10 @@ namespace LoremIpsumLogistica.Api.Domain.Arguments.Client
     {
         public string Id { get; set; }
         public string FullName { get;  set; }
-        public string BirthDate { get;  set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime BirthDate { get;  set; }
+        public string BirthDateString { get;  set; }
         public string Genre { get;  set; }
 
         public static explicit operator ClientResponse(Entities.Client entity)
@@ -15,7 +18,10 @@ namespace LoremIpsumLogistica.Api.Domain.Arguments.Client
             {
                 Id = entity.Id.ToString(),
                 FullName = entity.ToString(),
-                BirthDate = entity.BirthDate.ToString("dd/MM/yyyy"),
+                FirstName = entity.FirstName,
+                LastName = entity.LastName,
+                BirthDate = entity.BirthDate,
+                BirthDateString = entity.BirthDate.ToString("dd/MM/yyyy"),
                 Genre = entity.Genre.ToString(),
             };
         }

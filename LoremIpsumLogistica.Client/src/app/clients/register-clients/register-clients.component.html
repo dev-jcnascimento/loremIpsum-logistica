@@ -29,14 +29,14 @@
 
         <mat-form-field fxFlex="45">
             <mat-label>Data de Nascimento</mat-label>
-            <input matInput [matDatepicker]="dtbirth" [(ngModel)]="client.birthDate"  name="birtDate">
+            <input matInput [matDatepicker]="dtbirth" [(ngModel)]="client.birthDate" name="birtDate">
             <mat-datepicker-toggle matSuffix [for]="dtbirth"></mat-datepicker-toggle>
             <mat-datepicker #dtbirth></mat-datepicker>
         </mat-form-field>
 
         <mat-radio-group fxFlex="45" fxLayout="column" [(ngModel)]="client.genre" name="genre" fxLayoutAlign="space-between start">
-            <mat-radio-button value=0 checked >Masculino</mat-radio-button>
-            <mat-radio-button value=1 >Feminino</mat-radio-button>
+            <mat-radio-button value="Male" checked>Masculino</mat-radio-button>
+            <mat-radio-button value="Female">Feminino</mat-radio-button>
         </mat-radio-group>
     </div>
 

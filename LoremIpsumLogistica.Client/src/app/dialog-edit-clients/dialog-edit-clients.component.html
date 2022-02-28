@@ -1,0 +1,34 @@
+<form fxLayout="column" fxLayoutAlign="start stretch" #formClient="ngForm">
+    <h1 mat-dialog-title>Edit Product</h1>
+    <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+        <mat-form-field fxFlex="45" appearance="legacy">
+            <mat-label>Nome</mat-label>
+            <input matInput type="text" class="form-control" [(ngModel)]="client.firstName" name="firstName">
+        </mat-form-field>
+        <mat-form-field fxFlex="45" appearance="legacy">
+            <mat-label>Sobrenome</mat-label>
+            <input matInput type="text" class="form-control" [(ngModel)]="client.lastName" name="lastname">
+        </mat-form-field>
+    </div>
+
+    <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
+
+        <mat-form-field fxFlex="45">
+            <mat-label>Data de Nascimento</mat-label>
+            <input matInput [matDatepicker]="dtbirth" [(ngModel)]="client.birthDate" name="birtDate">
+            <mat-datepicker-toggle matSuffix [for]="dtbirth"></mat-datepicker-toggle>
+            <mat-datepicker #dtbirth></mat-datepicker>
+        </mat-form-field>
+
+        <mat-radio-group fxFlex="45" fxLayout="column" [(ngModel)]="client.genre" name="genre" fxLayoutAlign="space-between start">
+            <mat-radio-button value="Male" checked>Masculino</mat-radio-button>
+            <mat-radio-button value="Female">Feminino</mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <div mat-dialog-actions>
+        <button mat-button (click)="cancel()">Cancel</button>
+        <button mat-button [mat-dialog-close]="client" cdkFocusInitial>Save</button>
+    </div>
+
+</form>

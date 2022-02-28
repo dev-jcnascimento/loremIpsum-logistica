@@ -19,9 +19,10 @@
             <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="birtDate">
+        <ng-container matColumnDef="birthDateString">
             <th mat-header-cell *matHeaderCellDef> Nascimento </th>
-            <td mat-cell *matCellDef="let element"> {{element.birthDate}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.birthDateString}} </td>
+
         </ng-container>
 
         <ng-container matColumnDef="genre">
@@ -41,7 +42,7 @@
         <ng-container matColumnDef="actionsEdit">
             <th mat-header-cell *matHeaderCellDef> Editar </th>
             <td mat-cell *matCellDef="let element;  let j = index;">
-                <button mat-icon-button color="primary" (click)="editTicket(element.i)">
+                <button mat-icon-button color="primary" (click)="editTicket(element)">
                     <mat-icon>edit</mat-icon>
                 </button>
             </td>

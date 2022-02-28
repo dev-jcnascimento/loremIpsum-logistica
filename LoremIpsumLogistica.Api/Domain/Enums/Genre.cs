@@ -3,6 +3,7 @@
     public enum Genre
     {
         Male,
-        Female
+        Female,
+        Unidentified
     }
 }

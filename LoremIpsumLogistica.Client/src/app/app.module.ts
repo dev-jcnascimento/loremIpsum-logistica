@@ -12,6 +12,7 @@ import { TapGroupClientsComponent } from './clients/tap-group-clients/tap-group-
 import { RegisterClientsComponent } from './clients/register-clients/register-clients.component';
 import { GetallClientsComponent } from './clients/getall-clients/getall-clients.component';
 import { SearchByNameClientsComponent } from './clients/search-by-name-clients/search-by-name-clients.component';
+import { DialogEditClientsComponent } from './dialog-edit-clients/dialog-edit-clients.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { SearchByNameClientsComponent } from './clients/search-by-name-clients/s
     RegisterClientsComponent,
     GetallClientsComponent,
     SearchByNameClientsComponent,
+    DialogEditClientsComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,9 @@ import { SearchByNameClientsComponent } from './clients/search-by-name-clients/s
     HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[
+    DialogEditClientsComponent
+  ],
 })
 export class AppModule { }

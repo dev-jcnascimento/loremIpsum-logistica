@@ -17,13 +17,12 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
 
         public async Task<ClientResponse> CreateAsync(CreateClientRequest request)
         {
-            Genre genre = (Genre)int.Parse(request.Genre);
             var cliente = new Client(
-                request.FirstName,
-                request.LastName,
-                request.BirthDate,
-                genre
-                );
+                  request.FirstName,
+                  request.LastName,
+                  request.BirthDate,
+                   ValidationGenre(request.Genre)
+                  );
             var result = await _clientRepository.Create(cliente);
             return (ClientResponse)result;
         }
@@ -64,8 +63,8 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             client.Update(
                 request.FirstName,
                 request.LastName,
-                DateTime.Parse(request.BirthDate),
-                request.Genre);
+                request.BirthDate,
+                ValidationGenre(request.Genre));
 
             var result = await _clientRepository.Update(client);
             return (ClientResponse)result;
@@ -73,13 +72,20 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
         public async Task DeleteByIAsync(Guid id)
         {
             var client = await ExistClientAsync(id);
-           await _clientRepository.DeleteClientAndAddress(client);
+            await _clientRepository.DeleteClientAndAddress(client);
         }
         public async Task<Client> ExistClientAsync(Guid id)
         {
             var client = await _clientRepository.GetById(id);
             if (client == null) throw new ValidationException("Id Client not Found!");
             return client;
+        }
+        private Genre ValidationGenre(string genre)
+        {
+            var result = Genre.Unidentified;
+            if (genre.ToUpper().Equals(Genre.Male.ToString().ToUpper())) result = Genre.Male;
+            if (genre.ToUpper().Equals(Genre.Female.ToString().ToUpper())) result = Genre.Female;
+            return result;
         }
     }
 }

@@ -9,7 +9,7 @@ import { ClientsService } from 'src/app/services/clients.service';
 })
 export class RegisterClientsComponent implements OnInit {
 
-  client: Clients = { firstName: "", lastName: "", birthDate: "", genre:"" };
+  client: Clients = { firstName: "", lastName: "", birthDate: "" , genre:"" };
  
   constructor(
     private clientsService: ClientsService

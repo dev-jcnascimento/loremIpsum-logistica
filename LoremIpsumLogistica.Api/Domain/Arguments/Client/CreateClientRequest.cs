@@ -1,6 +1,4 @@
-﻿using LoremIpsumLogistica.Api.Domain.Enums;
-
-namespace LoremIpsumLogistica.Api.Domain.Arguments.Client
+﻿namespace LoremIpsumLogistica.Api.Domain.Arguments.Client
 {
     public class CreateClientRequest
     {

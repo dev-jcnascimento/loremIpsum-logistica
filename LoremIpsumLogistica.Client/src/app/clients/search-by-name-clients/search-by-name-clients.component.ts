@@ -20,7 +20,7 @@ export class SearchByNameClientsComponent implements AfterViewInit {
     private snackbar: MatSnackBar,
   ) { }
 
-  displayedColumns: string[] = ['fullName', 'birtDate', 'genre', 'actionsDelete', 'actionsEdit'];
+  displayedColumns: string[] = ['fullName', 'birthDateString', 'genre', 'actionsDelete', 'actionsEdit'];
   dataSource = new MatTableDataSource<Clients>();
 
 
