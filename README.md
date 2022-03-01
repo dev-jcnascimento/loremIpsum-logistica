@@ -30,6 +30,7 @@ Depois, execute o comando para rodar o projeto:
 
 ## DOCUMENTAÇÃO
 Para ter acesso aos endpoints criados, acesse no navegador:
->
-Para ter acesso aos endpoints criados utilizando o Postman, utilize o link para importar:
->
+>https://localhost:7155/swagger/index.html
+
+Para ter acesso aos endpoints criados utilizando o Postman, acesse o link para importar a Collection File:
+>https://github.com/dev-jcnascimento/loremIpsum-logistica/blob/master/postman_collection
