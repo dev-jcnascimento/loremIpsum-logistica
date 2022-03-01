@@ -47,6 +47,9 @@ Agora execute o comando para rodar o projeto:
 >ng serve ./LoremIpsumLogistica.Client
 
 ## DOCUMENTAÇÃO
+Para ter acesso ao FRONTEND, acesse no navegador:
+>http://localhost:4200/
+  
 Para ter acesso aos endpoints criados, acesse no navegador:
 >https://localhost:7155/swagger/index.html
 
