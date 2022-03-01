@@ -4,7 +4,7 @@ namespace LoremIpsumLogistica.Api.Domain.Arguments.Address
 {
     public class CreateAddressRequest
     {
-        public TypeAddress TypeAddress { get; set; }
+        public string TypeAddress { get; set; }
         public int ZipCode { get; set; }
         public string Place { get; set; }
         public int Number { get; set; }

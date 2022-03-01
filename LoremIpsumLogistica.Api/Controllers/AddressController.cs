@@ -71,8 +71,6 @@ namespace LoremIpsumLogistica.Api.Controllers
             {
                 var address = await _addressService.GetByClientIdAsync(clientId);
 
-                address.ToList().ForEach(c => GerarLinks(c));
-
                 return Ok(address);
             }
             catch (ValidationException ex)

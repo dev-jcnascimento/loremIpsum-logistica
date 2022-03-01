@@ -1,5 +1,6 @@
 ﻿using LoremIpsumLogistica.Api.Domain.Arguments.Address;
 using LoremIpsumLogistica.Api.Domain.Entities;
+using LoremIpsumLogistica.Api.Domain.Enums;
 using LoremIpsumLogistica.Api.Infra.Persistence.IRepositories;
 using System.ComponentModel.DataAnnotations;
 
@@ -18,9 +19,11 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
 
         public async Task<AddressResponse> CreateAsync(CreateAddressRequest request)
         {
+            var client = ExistClient(request.ClientId);
+            if (client == null) throw new ValidationException("Id Player not Exist!");
             var address = new Address(
               request.ClientId,
-              request.TypeAddress,
+              ValidationTypeAddress(request.TypeAddress),
               request.ZipCode,
               request.Place,
               request.Number,
@@ -45,15 +48,19 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
         }
         public async Task<IEnumerable<AddressResponse>> GetByClientIdAsync(Guid clientId)
         {
-            await ExistClient(clientId);
+            var client = ExistClient(clientId);
+            if (client == null) return null;
             var result = await _addressRepository.GetByClientId(clientId);
             return result.Select(x => (AddressResponse)x).ToList();
         }
         public async Task<AddressResponse> UpdateAsync(UpdateAddressRequest request)
         {
+            var client = ExistClient(request.ClientId);
+            if (client == null) throw new ValidationException("Id Player not Exist!");
+
             var address = await ExistAddress(request.Id);
             address.Update(
-              request.TypeAddress,
+              ValidationTypeAddress(request.TypeAddress),
               request.ZipCode,
               request.Place,
               request.Number,
@@ -75,10 +82,23 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             if (address == null) throw new ValidationException("Id Address not Found!");
             return address;
         }
-        private async Task ExistClient(Guid id)
+        private object ExistClient(Guid id)
         {
-            var client = await _clientRepository.GetById(id);
-            if (client == null) throw new ValidationException("Id Client not Found!");
+            var client =  _clientRepository.GetById(id);
+            if (client == null) return null;
+            return client;
+        }
+        private TypeAddress ValidationTypeAddress(string genre)
+        {
+            var result = TypeAddress.Unidentified;
+            if (genre.ToUpper().Equals(TypeAddress.Commercial.ToString().ToUpper())) result = TypeAddress.Commercial;
+            if (genre.ToUpper().Equals(TypeAddress.Residential.ToString().ToUpper())) result = TypeAddress.Residential;
+            return result;
+        }
+        private int ParseInt(string requestString)
+        {
+            var parceInt = int.Parse(requestString);
+            return parceInt;
         }
     }
 }

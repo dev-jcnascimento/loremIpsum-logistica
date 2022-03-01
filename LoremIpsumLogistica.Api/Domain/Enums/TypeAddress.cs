@@ -3,6 +3,7 @@
     public enum TypeAddress
     {
         Residential,
-        Commercial
+        Commercial,
+        Unidentified
     }
 }

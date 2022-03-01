@@ -13,7 +13,7 @@ namespace LoremIpsumLogistica.Api.Infra.Persistence.IRepositories.Repositories
         public async Task<List<Address>> GetByClientId(Guid id)
         {
             var addressList = _loremIpsumLogisticaContext.Addresses
-                .Where(a => a.ClientId == id)
+                .Where(a => a.ClientId.Equals(id))
                 .ToList();
             return addressList;
         }

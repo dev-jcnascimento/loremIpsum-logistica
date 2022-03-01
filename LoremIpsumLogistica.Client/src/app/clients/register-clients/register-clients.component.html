@@ -1,19 +1,4 @@
-<!-- <mat-card-content>
-    <div fxLayout="columm" fxLayoutAlign="space-between">
-        <mat-form-field>
-            <input matInput [(ngModel)]="client.fullName">
-            <mat-hint>Cliente Name</mat-hint>
-        </mat-form-field>
-        <div fxLayout="row" fxLayoutAlign="end end">
-            <button mat-button color="primary" (click)="save()">Salvar</button>
-            <button mat-button color="primary" (click)="cancel()">Cancelar</button>
-        </div>
-    </div>
-</mat-card-content> -->
-
-
 <form fxLayout="column" fxLayoutAlign="start stretch" (ngSubmit)="save()" #formClient="ngForm">
-
     <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
         <mat-form-field fxFlex="45" appearance="legacy">
             <mat-label>Nome</mat-label>
@@ -34,50 +19,21 @@
             <mat-datepicker #dtbirth></mat-datepicker>
         </mat-form-field>
 
-        <mat-radio-group fxFlex="45" fxLayout="column" [(ngModel)]="client.genre" name="genre" fxLayoutAlign="space-between start">
-            <mat-radio-button value="Male" checked>Masculino</mat-radio-button>
-            <mat-radio-button value="Female">Feminino</mat-radio-button>
+        <mat-radio-group fxFlex="45" fxLayout="row" [(ngModel)]="client.genre" name="genre" fxLayoutAlign="space-between start">
+            <mat-radio-button fxFlex="35" value="Male" checked>Masculino</mat-radio-button>
+            <mat-radio-button fxFlex="35" value="Female">Feminino</mat-radio-button>
         </mat-radio-group>
     </div>
-
-    <!-- <div fxFlex="100" fxLayoutAlign="start">
-        <h4>Endere:</h4>
-    </div>
-    <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
-        <mat-form-field fxFlex="80">
-            <input matInput type="text" class="form-control" value="" placeholder="Street">
-        </mat-form-field>
-    </div>
-        <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
-            <mat-form-field fxFlex="50">
-                <input matInput type="text" class="form-control" value="" placeholder="City">
-            </mat-form-field>
-
-            <mat-form-field fxFlex="20">
-                <mat-select placeholder="State">
-                    <mat-option value="Option 1">Option 1</mat-option>
-                    <mat-option value="Option 2">Option 2</mat-option>
-                    <mat-option value="Option 3">Option 3</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-    
-
-    <div fxFlex="100" fxLayoutAlign="start">
-        <h4>Telephones: </h4>
-    </div>
-
-    <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px">
-        <mat-form-field fxFlex="45">
-            <input matInput type="text" class="form-control" value="" placeholder="Telephone 1 ">
-        </mat-form-field>
-        <mat-form-field fxFlex="45">
-            <input matInput type="text" class="form-control" value="" placeholder="Telephone 2">
-        </mat-form-field>
-    </div> -->
 
     <button mat-button color="primary" type="submit">
         <mat-icon>done</mat-icon>Salvar
     </button>
-
 </form>
+<div fxLayout="column" fxLayoutAlign="start stretch">
+    <div fxFlex="100" fxLayoutAlign="begin">
+        <h4>Endereços:</h4>
+        <button mat-button type="button" color="primary" (click)="addEnd()">
+        <mat-icon>add</mat-icon>
+    </button>
+    </div>
+</div>

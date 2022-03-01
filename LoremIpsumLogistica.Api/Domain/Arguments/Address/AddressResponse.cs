@@ -6,9 +6,9 @@ namespace LoremIpsumLogistica.Api.Domain.Arguments.Address
     {
         public string Id { get; set; }
         public string TypeAddress { get;  set; }
-        public int ZipCode { get;  set; }
+        public string ZipCode { get;  set; }
         public string Place { get;  set; }
-        public int Number { get;  set; }
+        public string Number { get;  set; }
         public string Complement { get;  set; }
         public string District { get;  set; }
         public string State { get;  set; }
@@ -20,9 +20,9 @@ namespace LoremIpsumLogistica.Api.Domain.Arguments.Address
             {
                 Id = entity.Id.ToString(),
                 TypeAddress = entity.TypeAddress.ToString(),
-                ZipCode = entity.ZipCode,
+                ZipCode = entity.ZipCode.ToString(),
                 Place = entity.Place,
-                Number = entity.Number,
+                Number = entity.Number.ToString(),
                 Complement = entity.Complement,
                 District = entity.District,
                 State = entity.State,

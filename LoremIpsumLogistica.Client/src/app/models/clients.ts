@@ -1,7 +1,7 @@
 // import { Addresses } from "./addresses";
 
 export interface Clients {
-    _id ?: string;
+    id ?: string;
     fullName ?: string;
     firstName ?: string;
     lastName ?: string;

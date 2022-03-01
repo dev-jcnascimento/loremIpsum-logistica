@@ -13,6 +13,8 @@ import { RegisterClientsComponent } from './clients/register-clients/register-cl
 import { GetallClientsComponent } from './clients/getall-clients/getall-clients.component';
 import { SearchByNameClientsComponent } from './clients/search-by-name-clients/search-by-name-clients.component';
 import { DialogEditClientsComponent } from './dialog-edit-clients/dialog-edit-clients.component';
+import { GetaddressByClientComponent } from './addresses/getaddress-by-client/getaddress-by-client.component';
+import { DialogAddressComponent } from './addresses/dialog-address/dialog-address.component';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { DialogEditClientsComponent } from './dialog-edit-clients/dialog-edit-cl
     GetallClientsComponent,
     SearchByNameClientsComponent,
     DialogEditClientsComponent,
+    GetaddressByClientComponent,
+    DialogAddressComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,8 @@ import { DialogEditClientsComponent } from './dialog-edit-clients/dialog-edit-cl
   providers: [],
   bootstrap: [AppComponent],
   entryComponents:[
-    DialogEditClientsComponent
+    DialogEditClientsComponent,
+    DialogAddressComponent
   ],
 })
 export class AppModule { }

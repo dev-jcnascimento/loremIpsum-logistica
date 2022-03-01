@@ -25,7 +25,7 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(builder =>
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<LoremIpsumLogisticaContext>(options =>
-                    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStrings")));
+                    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStrings")),ServiceLifetime.Transient);
 
 builder.Services.AddMvc(options =>
 {

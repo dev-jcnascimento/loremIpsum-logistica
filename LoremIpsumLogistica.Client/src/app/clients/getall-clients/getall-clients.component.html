@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutAlign="start stretch">
+<!-- <div fxLayout="column" fxLayoutAlign="start stretch">
     <div fxFlex="100" fxLayout="row">
         <div fxFlex="0">
             <button mat-button color="primary" (click)="buscar()">
@@ -51,4 +51,86 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-</div>
+</div> -->
+<div fxLayout="column" fxLayoutAlign="start stretch">
+    <div fxFlex="100" fxLayout="row">
+        <div fxFlex="0">
+            <button mat-button color="primary" (click)="buscar()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+        <div fxFlex="100">
+            <mat-paginator class="mat-paginator-range-label" [pageSizeOptions]="[5, 10, 20, 50, 100]" aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+    </div>
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
+
+        <ng-container matColumnDef="fullName">
+            <th mat-header-cell *matHeaderCellDef> Nome </th>
+            <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="birthDateString">
+            <th mat-header-cell *matHeaderCellDef> Nascimento </th>
+            <td mat-cell *matCellDef="let element"> {{element.birthDateString}} </td>
+
+        </ng-container>
+
+        <ng-container matColumnDef="genre">
+            <th mat-header-cell *matHeaderCellDef> Genero </th>
+            <td mat-cell *matCellDef="let element"> {{element.genre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actionsDelete">
+            <th mat-header-cell *matHeaderCellDef> Deletar </th>
+            <td mat-cell *matCellDef="let element;  let j = index;">
+                <button mat-icon-button color="accent" (click)="deleteTicket(element.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actionsEdit">
+            <th mat-header-cell *matHeaderCellDef> Editar </th>
+            <td mat-cell *matCellDef="let element;  let j = index;">
+                <button mat-icon-button color="primary" (click)="editTicket(element)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actionsEnd">
+            <th mat-header-cell *matHeaderCellDef> Add </th>
+            <td mat-cell *matCellDef="let element;  let j = index;">
+                <button mat-icon-button color="primary" (click)="addEnd(element)">
+                    <mat-icon>home</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    <!-- <div class="example-element-fullName"> </div>
+                    <div class="example-element-weight">
+                        <div class="example-element-weight"> {{element.actionsDelete}} </div>
+                        <div class="example-element-description">
+                            {{element.id}}
+
+                            <span class="example-element-description-attribution"> -- wferfergergergerferegergregergeWikipedia </span>
+                        </div>
+                    </div> -->
+                    <app-getaddress-by-client [clientId]="element.id">
+                    </app-getaddress-by-client>
+
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row" [class.example-expanded-row]="expandedElement === element" (click)="expandedElement = expandedElement === element ? null : element">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
