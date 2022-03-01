@@ -34,7 +34,8 @@ Depois, você pode escolher utilizar a função:<br>
 Que irá criar uma Database nova sem popular.<br>
 
 Ou utilizar o script que se encontra em:<br>
->./script.sql ./LoremIpsumLogistica.Api
+>./script.sql ./LoremIpsumLogistica.Api<br><p>
+>https://github.com/dev-jcnascimento/loremIpsum-logistica/blob/master/script.sql
 
 No Script possue Schemas e Datas.<br>
 
