@@ -5,11 +5,24 @@ Trata-se de uma API e Client para Cadastro de Clientes e Endereçõs desenvolvid
 .NET 6<br>
 *Entity Framework Core*,<br>
 *SQL Server*<br>
+*Versionamento de EndPoints*<br>
+*Testes Unitários*<br>
+
+<p><img src="https://github.com/dev-jcnascimento/loremIpsum-logistica/blob/master/img/006.PNG" width="350" height="300" alt="API Social Games" title="API Social Games">
+<img src="https://github.com/dev-jcnascimento/loremIpsum-logistica/blob/master/img/007.PNG" width="350" height="300" alt="API Social Games" title="API Social Games"><p>
 
 **Front-end:**<br>
 Angular 13<br>
 Angular Material<br>
+  
+<p><img src="https://github.com/dev-jcnascimento/loremIpsum-logistica/blob/master/img/001.PNG" width="320" height="200" alt="API Social Games" title="API Social Games">
+<img src="https://github.com/dev-jcnascimento/loremIpsum-logistica/blob/master/img/002.PNG" width="320" height="200" alt="API Social Games" title="API Social Games">  
+ <img src="https://github.com/dev-jcnascimento/loremIpsum-logistica/blob/master/img/003.PNG" width="320" height="200" alt="API Social Games" title="API Social Games">
+    
+<p><img src="https://github.com/dev-jcnascimento/loremIpsum-logistica/blob/master/img/004.PNG" width="320" height="200" alt="API Social Games" title="API Social Games">
+<img src="https://github.com/dev-jcnascimento/loremIpsum-logistica/blob/master/img/005.PNG" width="320" height="200" alt="API Social Games" title="API Social Games">
 
+  
 ## COMO RODAR O PROJETO
 ### BANCO DE DADOS
 Foi usado o banco de dados SQL Server. Antes de rodar o projeto, é necessário:<br>
@@ -21,7 +34,8 @@ Depois, você pode escolher utilizar a função:<br>
 Que irá criar uma Database nova sem popular.<br>
 
 Ou utilizar o script que se encontra em:<br>
->./script.sql ./LoremIpsumLogistica.Api
+>./script.sql ./LoremIpsumLogistica.Api<br><p>
+>https://github.com/dev-jcnascimento/loremIpsum-logistica/blob/master/script.sql
 
 No Script possue Schemas e Datas.<br>
 
@@ -34,6 +48,9 @@ Agora execute o comando para rodar o projeto:
 >ng serve ./LoremIpsumLogistica.Client
 
 ## DOCUMENTAÇÃO
+Para ter acesso ao FRONTEND, acesse no navegador:
+>http://localhost:4200/
+  
 Para ter acesso aos endpoints criados, acesse no navegador:
 >https://localhost:7155/swagger/index.html
 
