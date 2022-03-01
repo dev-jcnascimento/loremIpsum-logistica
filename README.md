@@ -5,6 +5,8 @@ Trata-se de uma API e Client para Cadastro de Clientes e Endereçõs desenvolvid
 .NET 6<br>
 *Entity Framework Core*,<br>
 *SQL Server*<br>
+*Versionamento de EndPoints*<br>
+*Testes Unitários*<br>
 
 **Front-end:**<br>
 Angular 13<br>
