@@ -2,6 +2,7 @@
 using LoremIpsumLogistica.Api.Domain.Arguments.Hateoas;
 using LoremIpsumLogistica.Api.Domain.IServices;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace LoremIpsumLogistica.Api.Controllers
@@ -34,6 +35,10 @@ namespace LoremIpsumLogistica.Api.Controllers
             catch (ValidationException ex)
             {
                 return BadRequest(ex.Message);
+            }
+            catch (DbUpdateException)
+            {
+                return BadRequest("Id Client not Found!");
             }
         }
 
@@ -90,6 +95,10 @@ namespace LoremIpsumLogistica.Api.Controllers
             catch (ValidationException ex)
             {
                 return BadRequest(ex.Message);
+            }
+            catch (DbUpdateException)
+            {
+                return BadRequest("Id Client not Found!");
             }
             return NoContent();
         }

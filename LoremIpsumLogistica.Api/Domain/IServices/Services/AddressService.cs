@@ -9,18 +9,18 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
     public class AddressService : IAddressService
     {
         private readonly IAddressRepository _addressRepository;
-        private readonly IClientRepository _clientRepository;
+        private readonly IClientService _clientService;
 
-        public AddressService(IAddressRepository addressRepository, IClientRepository clientRepository)
+        public AddressService(IAddressRepository addressRepository, IClientService clientService)
         {
             _addressRepository = addressRepository;
-            _clientRepository = clientRepository;
+            _clientService = clientService;
         }
 
         public async Task<AddressResponse> CreateAsync(CreateAddressRequest request)
         {
-            var client = ExistClient(request.ClientId);
-            if (client == null) throw new ValidationException("Id Player not Exist!");
+             await _clientService.GetByIdAsync(request.ClientId);
+            
             var address = new Address(
               request.ClientId,
               ValidationTypeAddress(request.TypeAddress),
@@ -48,15 +48,14 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
         }
         public async Task<IEnumerable<AddressResponse>> GetByClientIdAsync(Guid clientId)
         {
-            var client = ExistClient(clientId);
-            if (client == null) return null;
+            await _clientService.GetByIdAsync(clientId);
+
             var result = await _addressRepository.GetByClientId(clientId);
             return result.Select(x => (AddressResponse)x).ToList();
         }
         public async Task<AddressResponse> UpdateAsync(UpdateAddressRequest request)
         {
-            var client = ExistClient(request.ClientId);
-            if (client == null) throw new ValidationException("Id Player not Exist!");
+            await _clientService.GetByIdAsync(request.ClientId);
 
             var address = await ExistAddress(request.Id);
             address.Update(
@@ -82,12 +81,7 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             if (address == null) throw new ValidationException("Id Address not Found!");
             return address;
         }
-        private object ExistClient(Guid id)
-        {
-            var client =  _clientRepository.GetById(id);
-            if (client == null) return null;
-            return client;
-        }
+
         private TypeAddress ValidationTypeAddress(string genre)
         {
             var result = TypeAddress.Unidentified;
@@ -95,10 +89,6 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
             if (genre.ToUpper().Equals(TypeAddress.Residential.ToString().ToUpper())) result = TypeAddress.Residential;
             return result;
         }
-        private int ParseInt(string requestString)
-        {
-            var parceInt = int.Parse(requestString);
-            return parceInt;
-        }
+
     }
 }

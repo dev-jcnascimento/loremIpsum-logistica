@@ -21,7 +21,7 @@ namespace LoremIpsumLogistica.Api.Infra.Persistence.IRepositories.Generic
         }
         public async Task<TEntity> GetById(TId id)
         {
-            return await _context.Set<TEntity>().FindAsync(id);
+            return await _context.Set<TEntity>().FirstOrDefaultAsync(x => x.Id.ToString() == id.ToString());
         }
         public async Task<List<TEntity>> GetAll()
         {

@@ -77,6 +77,7 @@ namespace LoremIpsumLogistica.Api.Domain.IServices.Services
         public async Task<Client> ExistClientAsync(Guid id)
         {
             var client = await _clientRepository.GetById(id);
+
             if (client == null) throw new ValidationException("Id Client not Found!");
             return client;
         }

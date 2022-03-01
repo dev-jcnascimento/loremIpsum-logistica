@@ -47,6 +47,5 @@ namespace LoremIpsumLogistica.Api.Infra.Persistence.IRepositories.Repositories
                 .Take(pageSize)
                 .ToList();
         }
-
     }
 }
