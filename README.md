@@ -5,10 +5,10 @@ Trata-se de uma API e Client para Cadastro de Clientes e Endereçõs desenvolvid
 .NET 6<br>
 *Entity Framework Core*,<br>
 *SQL Server*<br>
-*Seeding*<br>
 
 **Front-end:**<br>
-Angular<br>
+Angular 13<br>
+Angular Material<br>
 
 ## COMO RODAR O PROJETO
 ### BANCO DE DADOS
