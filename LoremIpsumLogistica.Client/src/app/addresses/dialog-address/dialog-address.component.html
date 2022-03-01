@@ -10,22 +10,34 @@
         </mat-radio-group>
         <mat-form-field fxFlex="35" appearance="legacy">
             <mat-label>CEP</mat-label>
-            <input matInput type="number" class="form-control" [(ngModel)]="address.zipCode" name="zipCode">
+            <input matInput type="number" min="11111111" max="99999999" minlength="8" maxlength="8" class="form-control" [(ngModel)]="address.zipCode" name="zipCode" #zipCodeField="ngModel" required>
+            <mat-hint *ngIf="zipCodeField.invalid &&  (zipCodeField.touched || zipCodeField.dirty)" class="field-error">
+                <p>Entre com o CEP somente os 8 numeros</p>
+            </mat-hint>
         </mat-form-field>
         <mat-form-field fxFlex="15" appearance="legacy">
             <mat-label>UF</mat-label>
-            <input matInput type="text" class="form-control" [(ngModel)]="address.state" name="state">
+            <input matInput type="text" pattern="[A-Z]*" class="form-control" [(ngModel)]="address.state" name="state" #stateField="ngModel" required minlength="2" maxlength="2">
+            <mat-hint *ngIf="stateField.invalid && (stateField.touched || stateField.dirty)" class="field-error">
+                <p>Entre com o UF</p>
+            </mat-hint>
         </mat-form-field>
     </div>
 
     <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
         <mat-form-field fxFlex="65" appearance="legacy">
             <mat-label>Logradouro</mat-label>
-            <input matInput class="form-control" [(ngModel)]="address.place" name="place">
+            <input matInput class="form-control" [(ngModel)]="address.place" name="place" #placeField="ngModel" required>
+            <mat-hint *ngIf="placeField.invalid && (placeField.touched || placeField.dirty)" class="field-error">
+                <p>Entre com o Logradouro</p>
+            </mat-hint>
         </mat-form-field>
         <mat-form-field fxFlex="25" appearance="legacy">
             <mat-label>Numero</mat-label>
-            <input matInput type="number" class="form-control" [(ngModel)]="address.number" name="number">
+            <input matInput type="number" class="form-control" [(ngModel)]="address.number" name="number" #numberField="ngModel" required>
+            <mat-hint *ngIf="numberField.invalid && (numberField.touched || numberField.dirty)" class="field-error">
+                <p>Entre com o Nº</p>
+            </mat-hint>
         </mat-form-field>
     </div>
 
@@ -42,7 +54,7 @@
 
     <div mat-dialog-actions>
         <button mat-button (click)="cancel()">Cancel</button>
-        <button mat-button [mat-dialog-close]="address" cdkFocusInitial>Save</button>
+        <button mat-button [mat-dialog-close]="address" [disabled]="!formAddress.valid" cdkFocusInitial>Save</button>
     </div>
 
 </form>
