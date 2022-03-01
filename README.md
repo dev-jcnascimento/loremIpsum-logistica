@@ -8,10 +8,21 @@ Trata-se de uma API e Client para Cadastro de Clientes e Endereçõs desenvolvid
 *Versionamento de EndPoints*<br>
 *Testes Unitários*<br>
 
+<p><img src="https://github.com/dev-jcnascimento/loremIpsum-logistica/blob/master/img/006.PNG" width="350" height="300" alt="API Social Games" title="API Social Games">
+<img src="https://github.com/dev-jcnascimento/loremIpsum-logistica/blob/master/img/007.PNG" width="350" height="300" alt="API Social Games" title="API Social Games"><p>
+
 **Front-end:**<br>
 Angular 13<br>
 Angular Material<br>
+  
+<p><img src="https://github.com/dev-jcnascimento/loremIpsum-logistica/blob/master/img/001.PNG" width="320" height="200" alt="API Social Games" title="API Social Games">
+<img src="https://github.com/dev-jcnascimento/loremIpsum-logistica/blob/master/img/002.PNG" width="320" height="200" alt="API Social Games" title="API Social Games">  
+ <img src="https://github.com/dev-jcnascimento/loremIpsum-logistica/blob/master/img/003.PNG" width="320" height="200" alt="API Social Games" title="API Social Games">
+    
+<p><img src="https://github.com/dev-jcnascimento/loremIpsum-logistica/blob/master/img/004.PNG" width="320" height="200" alt="API Social Games" title="API Social Games">
+<img src="https://github.com/dev-jcnascimento/loremIpsum-logistica/blob/master/img/005.PNG" width="320" height="200" alt="API Social Games" title="API Social Games">
 
+  
 ## COMO RODAR O PROJETO
 ### BANCO DE DADOS
 Foi usado o banco de dados SQL Server. Antes de rodar o projeto, é necessário:<br>
